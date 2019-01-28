@@ -60,12 +60,13 @@ services:
       - POSTGRES_DBNAME=geopoppy
       - POSTGRES_DUMP=geopoppy.sql
   pgadmin4:
-    image: chorss/docker-pgadmin4
+    image: dpage/pgadmin4
     restart: on-failure
     ports:
-      - 5050:5050
-    volumes:
-      - ${LIZMAP_DIR}/pgadmin4:/data
+      - 5050:80
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=geopoppy@geopoppy.fr
+      - PGADMIN_DEFAULT_PASSWORD=geopoppy
   cloud:
     image: coderaiser/cloudcmd:latest-alpine
     restart: always
